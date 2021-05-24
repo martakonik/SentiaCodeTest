@@ -1,7 +1,8 @@
-package com.martakonik.sentiacodetest
+package com.martakonik.sentiacodetest.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.martakonik.sentiacodetest.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

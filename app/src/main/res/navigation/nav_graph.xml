@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentPropertyList">
+    <fragment
+        android:id="@+id/fragmentPropertyList"
+        android:name="com.martakonik.sentiacodetest.ui.PropertyListFragment"
+        android:label="fragmentPropertyList"
+        tools:layout="@layout/fragment_property_list" />
+</navigation>
