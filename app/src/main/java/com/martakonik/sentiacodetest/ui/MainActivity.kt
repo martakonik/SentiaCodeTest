@@ -1,12 +1,12 @@
 package com.martakonik.sentiacodetest.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.martakonik.sentiacodetest.R
+import androidx.appcompat.app.AppCompatActivity
+import com.martakonik.sentiacodetest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(ActivityMainBinding.inflate(layoutInflater).root)
     }
 }
