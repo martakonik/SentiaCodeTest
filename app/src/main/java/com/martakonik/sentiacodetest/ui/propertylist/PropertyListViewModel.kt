@@ -19,7 +19,7 @@ class PropertyListViewModel @Inject constructor(
     private val _state = MutableLiveData<UiState>()
     val state: LiveData<UiState> get() = _state
 
-    init {
+    fun load() {
         viewModelScope.launch {
             _state.value = UiState.Loading
             runCatching { propertiesRepository.getProperties() }

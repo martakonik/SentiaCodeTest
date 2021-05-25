@@ -22,6 +22,13 @@ class PropertyListFragment : Fragment() {
     private val viewModel: PropertyListViewModel by viewModels()
     private val binding get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            viewModel.load()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +46,6 @@ class PropertyListFragment : Fragment() {
                 )
             findNavController().navigate(action)
         }
-
 
         binding.propertyRecyclerView.adapter = propertyAdapter
         binding.propertyRecyclerView.layoutManager = LinearLayoutManager(context)

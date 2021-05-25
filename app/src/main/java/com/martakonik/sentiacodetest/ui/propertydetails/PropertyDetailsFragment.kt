@@ -26,7 +26,11 @@ class PropertyDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.propertyIdTextView.text = args.propertyId
+        viewModel.loadDetails(args.propertyId)
+
+        viewModel.state.observe(viewLifecycleOwner,  {
+            binding.propertyIdTextView.text = it
+        })
     }
 
     override fun onDestroyView() {
