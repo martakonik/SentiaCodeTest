@@ -1,4 +1,4 @@
-package com.martakonik.sentiacodetest.ui
+package com.martakonik.sentiacodetest.ui.propertylist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,15 +10,22 @@ import com.martakonik.sentiacodetest.R
 import com.martakonik.sentiacodetest.data.Property
 import com.martakonik.sentiacodetest.databinding.PropertyListItemBinding
 
-class PropertyAdapter() :
+class PropertyAdapter(
+    private val onItemClicked: (String) -> Unit
+) :
     RecyclerView.Adapter<PropertyAdapter.ViewHolder>() {
 
     var dataSet = emptyList<Property>()
 
-    class ViewHolder(val binding: PropertyListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(
+        val binding: PropertyListItemBinding,
+        onItemClicked: (Int) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            // Define click listener for the ViewHolder's View.
+            itemView.setOnClickListener {
+                onItemClicked(bindingAdapterPosition)
+            }
         }
     }
 
@@ -29,7 +36,9 @@ class PropertyAdapter() :
             viewGroup,
             false
         )
-        return ViewHolder(view)
+        return ViewHolder(view) {
+            onItemClicked(dataSet[it].id)
+        }
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {

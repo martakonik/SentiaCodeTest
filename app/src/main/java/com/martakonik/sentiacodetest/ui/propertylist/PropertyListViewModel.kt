@@ -1,4 +1,4 @@
-package com.martakonik.sentiacodetest.ui
+package com.martakonik.sentiacodetest.ui.propertylist
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -18,7 +18,6 @@ import javax.inject.Inject
 class PropertyListViewModel @Inject constructor(
     private val propertiesRepository: PropertiesRepository
 ) : ViewModel() {
-
 
     private val _state = MutableLiveData<List<Property>>()
     val state: LiveData<List<Property>> get() = _state

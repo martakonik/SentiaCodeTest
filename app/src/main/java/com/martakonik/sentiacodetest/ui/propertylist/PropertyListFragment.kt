@@ -1,4 +1,4 @@
-package com.martakonik.sentiacodetest.ui
+package com.martakonik.sentiacodetest.ui.propertylist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.martakonik.sentiacodetest.databinding.FragmentPropertyListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +31,13 @@ class PropertyListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val propertyAdapter = PropertyAdapter()
+        val propertyAdapter = PropertyAdapter() { propertyId ->
+            val action =
+                PropertyListFragmentDirections.actionFragmentPropertyListToFragmentPropertyDetails(
+                    propertyId
+                )
+            findNavController().navigate(action)
+        }
         binding.propertyRecyclerView.adapter = propertyAdapter
         binding.propertyRecyclerView.layoutManager = LinearLayoutManager(context)
 

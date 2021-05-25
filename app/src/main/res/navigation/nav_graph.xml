@@ -6,7 +6,21 @@
     app:startDestination="@id/fragmentPropertyList">
     <fragment
         android:id="@+id/fragmentPropertyList"
-        android:name="com.martakonik.sentiacodetest.ui.PropertyListFragment"
+        android:name="com.martakonik.sentiacodetest.ui.propertylist.PropertyListFragment"
         android:label="fragmentPropertyList"
-        tools:layout="@layout/fragment_property_list" />
+        tools:layout="@layout/fragment_property_list">
+        <action
+            android:id="@+id/action_fragmentPropertyList_to_fragmentPropertyDetails"
+            app:destination="@id/fragmentPropertyDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentPropertyDetails"
+        android:name="com.martakonik.sentiacodetest.ui.propertydetails.PropertyDetailsFragment"
+        android:label="fragmentPropertyDetails"
+        tools:layout="@layout/fragment_property_details">
+        <argument
+            android:name="propertyId"
+            app:argType="string" />
+    </fragment>
 </navigation>
