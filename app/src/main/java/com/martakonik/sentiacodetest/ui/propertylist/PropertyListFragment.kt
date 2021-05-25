@@ -38,10 +38,12 @@ class PropertyListFragment : Fragment() {
                 )
             findNavController().navigate(action)
         }
+
+
         binding.propertyRecyclerView.adapter = propertyAdapter
         binding.propertyRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        viewModel.getPropertyList()
+//        binding.contentLoadingProgressBar.show()
 
         viewModel.state.observe(viewLifecycleOwner, Observer {
             it.let { list -> //update recycler view
