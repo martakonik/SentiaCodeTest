@@ -9,7 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import com.martakonik.sentiacodetest.data.Property
 import com.martakonik.sentiacodetest.databinding.FragmentPropertyListBinding
+import com.martakonik.sentiacodetest.utils.UiState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,8 +20,6 @@ class PropertyListFragment : Fragment() {
 
     private var _binding: FragmentPropertyListBinding? = null
     private val viewModel: PropertyListViewModel by viewModels()
-
-    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -31,7 +32,7 @@ class PropertyListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val propertyAdapter = PropertyAdapter() { propertyId ->
+        val propertyAdapter = PropertyAdapter { propertyId ->
             val action =
                 PropertyListFragmentDirections.actionFragmentPropertyListToFragmentPropertyDetails(
                     propertyId
@@ -43,15 +44,30 @@ class PropertyListFragment : Fragment() {
         binding.propertyRecyclerView.adapter = propertyAdapter
         binding.propertyRecyclerView.layoutManager = LinearLayoutManager(context)
 
-//        binding.contentLoadingProgressBar.show()
-
         viewModel.state.observe(viewLifecycleOwner, Observer {
-            it.let { list -> //update recycler view
-                val i = list.size
-                propertyAdapter.dataSet = list
-                propertyAdapter.notifyDataSetChanged()
+            it.let { uiState ->
+                when (uiState) {
+                    is UiState.DataReceived -> {
+                        binding.progressBar.visibility = View.INVISIBLE
+                        loadData(uiState.propertyList, propertyAdapter)
+                    }
+                    is UiState.ErrorReceived -> {
+                        binding.progressBar.visibility = View.INVISIBLE
+                        Snackbar.make(
+                            binding.propertyRecyclerView,
+                            uiState.errorMessage,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                    UiState.Loading -> binding.progressBar.visibility = View.VISIBLE
+                }
             }
         })
+    }
+
+    private fun loadData(propertyList: List<Property>, propertyAdapter: PropertyAdapter) {
+        propertyAdapter.dataSet = propertyList
+        propertyAdapter.notifyDataSetChanged()
     }
 
     override fun onDestroyView() {

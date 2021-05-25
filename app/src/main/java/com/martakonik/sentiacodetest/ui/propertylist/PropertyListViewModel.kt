@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.martakonik.sentiacodetest.data.Property
+import com.martakonik.sentiacodetest.R
 import com.martakonik.sentiacodetest.repository.PropertiesRepository
+import com.martakonik.sentiacodetest.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,15 +16,15 @@ class PropertyListViewModel @Inject constructor(
     private val propertiesRepository: PropertiesRepository
 ) : ViewModel() {
 
-    private val _state = MutableLiveData<List<Property>>()
-    val state: LiveData<List<Property>> get() = _state
+    private val _state = MutableLiveData<UiState>()
+    val state: LiveData<UiState> get() = _state
 
     init {
         viewModelScope.launch {
-            //loading
+            _state.value = UiState.Loading
             runCatching { propertiesRepository.getProperties() }
-                .onFailure { }
-                .onSuccess { _state.value = it }
+                .onFailure { _state.value = UiState.ErrorReceived(R.string.error_message)}
+                .onSuccess { _state.value = UiState.DataReceived(it) }
         }
     }
 }
