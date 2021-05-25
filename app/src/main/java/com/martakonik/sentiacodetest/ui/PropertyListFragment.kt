@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.martakonik.sentiacodetest.databinding.FragmentPropertyListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,13 +30,17 @@ class PropertyListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val propertyAdapter = PropertyAdapter()
+        binding.propertyRecyclerView.adapter = propertyAdapter
+        binding.propertyRecyclerView.layoutManager = LinearLayoutManager(context)
 
         viewModel.getPropertyList()
 
         viewModel.state.observe(viewLifecycleOwner, Observer {
             it.let { list -> //update recycler view
                 val i = list.size
-                println(i)
+                propertyAdapter.dataSet = list
+                propertyAdapter.notifyDataSetChanged()
             }
         })
     }

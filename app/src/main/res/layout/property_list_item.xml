@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66" />
+
+    <ImageView
+        android:id="@+id/propertyImageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/property_image_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="@dimen/margin_medium_8dp"/>
+
+    <TextView
+        android:id="@+id/propertyNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium_8dp"
+        android:textSize="@dimen/text_size_big"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/propertyImageView"
+        tools:text="Within Network" />
+
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium_8dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/propertyNameTextView"
+        tools:text="10/178 Campbell Parade, Bondi Beach NSW 2026" />
+
+    <ImageView
+        android:id="@+id/agentAvatarImageView"
+        android:layout_width="@dimen/agent_avatar_size"
+        android:layout_height="@dimen/agent_avatar_size"
+        android:layout_margin="@dimen/margin_medium_8dp"
+        app:layout_constraintBottom_toTopOf="@+id/agentNameTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/propertyImageView"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/agentNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_small"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/agentAvatarImageView"
+        app:layout_constraintStart_toStartOf="@+id/agentAvatarImageView"
+        app:layout_constraintTop_toBottomOf="@+id/agentAvatarImageView"
+        tools:text="Sally Saunders" />
+
+    <TextView
+        android:id="@+id/bedroomTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium_8dp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bedroomIconImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationTextView"
+        tools:text="2" />
+
+    <ImageView
+        android:id="@+id/bedroomIconImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium_8dp"
+        android:src="@drawable/ic_baseline_single_bed_24"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bathroomTextView"
+        app:layout_constraintStart_toEndOf="@+id/bedroomTextView"
+        app:layout_constraintTop_toBottomOf="@+id/locationTextView" />
+
+    <TextView
+        android:id="@+id/bathroomTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium_8dp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bathroomIconImageView"
+        app:layout_constraintStart_toEndOf="@+id/bedroomIconImageView"
+        app:layout_constraintTop_toBottomOf="@+id/locationTextView"
+        tools:text="1" />
+
+    <ImageView
+        android:id="@+id/bathroomIconImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium_8dp"
+        android:src="@drawable/ic_sharp_bathtub_24"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/carspaceTextView"
+        app:layout_constraintStart_toEndOf="@+id/bathroomTextView"
+        app:layout_constraintTop_toBottomOf="@+id/locationTextView" />
+
+
+    <TextView
+        android:id="@+id/carspaceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium_8dp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/carIconImageView"
+        app:layout_constraintStart_toEndOf="@+id/bathroomIconImageView"
+        app:layout_constraintTop_toBottomOf="@+id/locationTextView"
+        tools:text="1" />
+
+    <ImageView
+        android:id="@+id/carIconImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium_8dp"
+        android:src="@drawable/ic_baseline_directions_car_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/bathroomIconImageView"
+        app:layout_constraintTop_toBottomOf="@+id/locationTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
